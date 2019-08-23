@@ -207,16 +207,17 @@ kits.slideshow = function () {
 //随机16进制颜色
 
 kits.randomHexColor=function(){
-
-function getColor(){
-  var colorElements = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
-  var colorArray = colorElements.split(",");
-  var color ="#";
-  for(var i =0;i<6;i++){
-      color+=colorArray[Math.floor(Math.random()*16)];
+  function getColor(){
+    let colorValue='0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f';
+    let colorArray=colorValue.split(',');
+    let color='#';
+  
+    //使用for循环语句生成剩余的6位16进制的值
+    for(let i=0;i<6; i++){
+      colorArray[Math.floor(Math.random()*16)];
+      color=color+colorArray[Math.floor(Math.random()*16)];
+      console.log(color);
+    }
+    return color;
   }
-  return color;
-
-
- }
 }
