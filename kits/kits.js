@@ -11,7 +11,7 @@ kits.dispatchZero = function (num) {
 
 
 //  获取时间戳
-// 把方法都放到对象的身上
+
 kits.formatDate = function () {
   var date = new Date();
   // 把年月日时分秒获取
@@ -28,7 +28,7 @@ kits.formatDate = function () {
 }
 
 
-let randomdeg = Math.random() * 360;   //随机角度
+let randomdeg = Math.random() * 360;   //360度随机角度
 //获取n-m之间的随机整数
 kits.randomInt = function (n, m) {
   return Math.floor(Math.random() * (m - n + 1) + n);
@@ -36,7 +36,7 @@ kits.randomInt = function (n, m) {
 
 
 
-// 常见的给id的方式1
+
 // 当前时间戳 + 大的随机数
 kits.getId = function () {
   // 返回一个不容易重复的id
@@ -199,4 +199,24 @@ kits.slideshow = function () {
     }
     circles[currentImgIndex].classList.add('current');
   }
+}
+
+
+
+
+//随机16进制颜色
+
+kits.randomHexColor=function(){
+
+function getColor(){
+  var colorElements = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
+  var colorArray = colorElements.split(",");
+  var color ="#";
+  for(var i =0;i<6;i++){
+      color+=colorArray[Math.floor(Math.random()*16)];
+  }
+  return color;
+
+
+ }
 }
