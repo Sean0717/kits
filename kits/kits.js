@@ -1,16 +1,16 @@
 
 var kits = {};
-
+//1.  获取1-10的总和
 kits.dispatchZero = function (num) {
   if (num <= 10) {
     num = '0' + num;
-  }                   //1-10的总和
+  }
   return num;
 }
 
 
 
-//  获取时间戳
+// 2.获取时间戳
 
 kits.formatDate = function () {
   var date = new Date();
@@ -26,8 +26,6 @@ kits.formatDate = function () {
   var second = this.dispatchZero(date.getSeconds());
   return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
 }
-
-
 let randomdeg = Math.random() * 360;   //360度随机角度
 //获取n-m之间的随机整数
 kits.randomInt = function (n, m) {
@@ -37,7 +35,9 @@ kits.randomInt = function (n, m) {
 
 
 
-// 当前时间戳 + 大的随机数
+
+
+//3. 当前时间戳 + 大的随机数
 kits.getId = function () {
   // 返回一个不容易重复的id
   let date = new Date();
@@ -51,7 +51,7 @@ kits.getId = function () {
 
 
 
-//随机获取rgb颜色
+//4.随机获取rgb颜色
 kits.randomRGBColor = function () {
   //随机三个0-255之间的整数
   //拼接成rgb(r,g,b)格式
@@ -68,7 +68,7 @@ kits.randomRGBColor = function () {
 
 
 
-//淘宝 放大镜 效果
+//5.淘宝 放大镜 效果
 kits.magnify = function () {
 
   let box = document.querySelector('.box');
@@ -141,7 +141,7 @@ kits.magnify = function () {
 
 
 
-//pc端 轮播图 
+//6. pc端 轮播图 
 kits.slideshow = function () {
   let circles = document.querySelectorAll('.list>i');
   let ul = document.querySelector('#imglist');
@@ -204,20 +204,84 @@ kits.slideshow = function () {
 
 
 
-//随机16进制颜色
+//7.随机16进制颜色
 
-kits.randomHexColor=function(){
-  function getColor(){
-    let colorValue='0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f';
-    let colorArray=colorValue.split(',');
-    let color='#';
-  
+kits.randomHexColor = function () {
+  function getColor() {
+    let colorValue = '0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f';
+    let colorArray = colorValue.split(',');
+    let color = '#';
+
     //使用for循环语句生成剩余的6位16进制的值
-    for(let i=0;i<6; i++){
-      colorArray[Math.floor(Math.random()*16)];
-      color=color+colorArray[Math.floor(Math.random()*16)];
+    for (let i = 0; i < 6; i++) {
+      colorArray[Math.floor(Math.random() * 16)];
+      color = color + colorArray[Math.floor(Math.random() * 16)];
       console.log(color);
     }
     return color;
   }
+}
+
+
+
+
+
+//   about本地存储
+// 8.getLocalDataArray(key)  从localStorage里面根据指定的键(key)获取一个数组或空[]
+kits.getLocalDataArray = function (key) {
+  let json = localStorage.getItem(key)
+  let arr = JSON.parse(json)
+  arr = arr || []
+  return arr
+}
+
+
+
+//9. saveLocalDataArray(key,arr)   将一个数组(arr)以指定的键(key)存储到localStorage里面
+kits.saveLocalDataArray = function (key, arr) {
+  arr = JSON.stringify(arr)
+  localStorage.setItem(key, arr)
+}
+
+
+// 10.后：appendDataIntoArray(key,data)  向localStorage里面指定键(key)的数组数据-后-追加一个数据对象（data）
+kits.appendDataIntoArray = function (key, data) {
+  let arr = kits.getLocalDataArray(key)
+  arr.push(data)
+  kits.saveLocalDataArray(key, arr)
+}
+
+
+
+//11. 前 ： beforeDataIntoArray(key,data)  向localStorage里面指定键(key)的数组数-前-据追加一个数据对象（data）
+kits.beforeDataIntoArray = function (key, data) {
+  let arr = kits.getLocalDataArray(key)
+  arr.unshift(data)
+  kits.saveLocalDataArray(key, arr)
+}
+
+
+//12.deleteLocalDataById(key,id)   根据对应的id从localStorage中指定键(key)的数组中删除一条数据
+kits.deleteLocalDataById = function (key, id) {
+  let arr = kits.getLocalDataArray(key)
+  arr.forEach((e, i) => {
+    if (e.id == id) {
+      arr.splice(i, 1)
+    }
+  });
+  kits.saveLocalDataArray(key, arr)
+}
+
+
+
+// 13.modifyLocalDataById(key,id,data)  根据id修改localStorage里面的指定键(key)的数组数据
+kits.modifyLocalDataById = function (key, id, data) {
+  let arr = kits.getLocalDataArray(key)
+  arr.forEach((e, i) => {
+    if (e.id == id) {
+      arr.splice(i, 1, data)
+    }
+  })
+  kits.saveLocalDataArray(key, arr)
+
 }
