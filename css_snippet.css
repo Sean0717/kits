@@ -1,0 +1,47 @@
+/* 一像素边框 */
+/* 方案一 */
+div {
+  height: 1px;
+  background: #000;
+  -webkit-transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  overflow: hidden;
+}
+
+/* 方案二 */
+/* 2倍屏 */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .border-bottom::after {
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+}
+/* 3倍屏 */
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .border-bottom::after {
+    -webkit-transform: scaleY(0.33);
+    transform: scaleY(0.33);
+  }
+}
+
+/* 单行文本溢出省略 */
+ellipsis{
+  /* 文本宽度 */
+  width:///;
+overflow: hidden;
+/* clip:不显示省略号(...) */
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+/* 多行文本溢出 */
+mult_line_ellipsis{
+
+ overflow: hidden;
+  text-overflow:ellipsis;//文本溢出显示省略号
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  width:130px;
+  background-color:cornflowerblue;
+}
+
